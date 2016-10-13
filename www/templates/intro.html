@@ -1,0 +1,53 @@
+  <ion-view view-title="Intro">
+        <ion-nav-buttons side="left">
+          <button class="button button-positive button-clear no-animation"
+                  ng-click="startApp()" ng-show="!slideIndex">
+            Skip Intro
+          </button>
+          <button class="button button-positive button-clear no-animation"
+                  ng-click="previous()" ng-show="slideIndex > 0">
+            <
+          </button>
+        </ion-nav-buttons>
+        <ion-nav-buttons side="right"> 
+          <button class="button button-positive button-clear no-animation"
+                  ng-click="next()" ng-show="slideIndex != 2">
+           >
+          </button>
+          <button class="button button-positive button-clear no-animation"
+                  ng-click="startApp()" ng-show="slideIndex == 2">
+            Start using MyApp
+          </button>
+        </ion-nav-buttons>
+        <ion-slide-box on-slide-changed="slideChanged(index)">
+          <ion-slide>
+            <h3>Gracias por elegir nuestra App</h3>
+            <div id="logo">
+              <img src="img/icono.png">
+            </div>
+            <p>
+             EU
+            </p>
+          
+          </ion-slide>
+          <ion-slide>
+            <h3>¿Como usar EU?</h3>
+            
+            <div id="list">
+              <h5>Solo 3 pasos:</h5>
+              <ol>
+                <li>Click en promos.</li>
+               <li>Click en promos.</li>
+                <li>Click en promos.</li>
+            
+              </ol>
+            </div>
+          </ion-slide>
+          <ion-slide>
+            <h3>¿Preguntas?</h3>
+            <p>
+              ¡Bien!
+            </p>
+          </ion-slide>
+        </ion-slide-box>
+      </ion-view>

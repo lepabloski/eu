@@ -4,9 +4,12 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ionic-material', 'ionMdInput'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ionic-material', 'ionMdInput', 'ngCookies'])
 
-        .run(function($ionicPlatform) {
+        .run(function($ionicPlatform, auth, $rootScope) {
+
+
+
             $ionicPlatform.ready(function() {
 
                 // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -20,6 +23,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
                     // org.apache.cordova.statusbar required
                     StatusBar.styleDefault();
                 }
+
+                $rootScope.$on('$routeChangeStart', function()
+                {
+                    //llamamos a checkStatus, el cual lo hemos definido en la factoria auth
+                    //la cuÃ¡l hemos inyectado en la acciÃ³n run de la aplicaciÃ³n
+                    auth.checkStatus();
+                })
             });
         })
 
@@ -41,6 +51,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
                 templateUrl: 'templates/menu.html',
                 controller: 'AppCtrl'
             })
+
+
+
+
+
+
 
 //                    .state('app.activity', {
 //                        url: '/activity',
@@ -96,8 +112,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
                             }
                         }
                     })
-                    
-                          .state('app.promos-todas', {
+
+                    .state('app.promos-todas', {
                         url: '/promos-todas',
                         views: {
                             'menuContent': {
@@ -133,6 +149,20 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 //                            }
 //                        }
 //                    })
+
+
+                    .state('app.intro', {
+                        url: '/intro',
+                        views: {
+                            'menuContent': {
+                                templateUrl: 'templates/intro.html',
+                                controller: 'IntroCtrl'
+                            },
+                            'fabContent': {
+                                template: ''
+                            }
+                        }
+                    })
 
                     .state('app.login', {
                         url: '/login',
@@ -179,5 +209,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
             ;
 
             // if none of the above states are matched, use this as the fallback
-            $urlRouterProvider.otherwise('/app/login');
+//            $urlRouterProvider.otherwise('/app/login');
+            $urlRouterProvider.otherwise("/app/intro");
         });

@@ -1,22 +1,26 @@
 <ion-view view-title="Login" align-title="left">
-    <ion-content style="background-color: #272727;">
-        <div class="hero no-header flat">
-            <div class="content">
-                <div class="app-icon"></div>
-                <h1>EU</h1>
+    <form name="loginUserForm">
+        <ion-content style="background-color: #272727;">
+            <div class="hero no-header flat">
+                <div class="content">
+                    <div class="app-icon"></div>
+                    <h1>EU</h1>
+                </div>
             </div>
-        </div>
-        <div class="list">
-            <ion-md-input placeholder="Username" highlight-color="balanced" type="text"></ion-md-input>
-            <ion-md-input placeholder="Password" highlight-color="energized" type="password"></ion-md-input>
-        </div>
-        <div class="padding">
-            <button ui-sref="app.promos" class="button button-full button-assertive ink">Login</button>
-        </div>
-<!--        <div class="button-bar social-login">
-            <button class="button button-small button-border icon-left ion-social-google button-assertive-900">Google+</button>
-            <button class="button button-small button-border icon-left ion-social-twitter button-calm-900">Twitter</button>
-            <button class="button button-small button-border icon-left ion-social-facebook button-positive-900">Facebook</button>
-        </div>-->
-    </ion-content>
+            <div class="list">
+                <ion-md-input placeholder="Username" highlight-color="balanced" type="text" ng-model="username"></ion-md-input>
+                <ion-md-input placeholder="Password" highlight-color="energized" type="password" ng-model="password"></ion-md-input>
+            </div>
+            <div class="padding">
+                <button type="submit" ng-disabled="!loginUserForm.$valid" ng-click="login(username, password)"  class="button button-full button-assertive ink">Login</button>
+                <!--<button ui-sref="app.login" class="button button-full button-assertive ink">Login</button>-->
+            </div>
+            <!--        <div class="button-bar social-login">
+                        <button class="button button-small button-border icon-left ion-social-google button-assertive-900">Google+</button>
+                        <button class="button button-small button-border icon-left ion-social-twitter button-calm-900">Twitter</button>
+                        <button class="button button-small button-border icon-left ion-social-facebook button-positive-900">Facebook</button>
+                    </div>-->
+        </ion-content>
+    </form>
 </ion-view>
+

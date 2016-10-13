@@ -87,16 +87,53 @@ angular.module('starter.controllers', [])
             };
         })
 
-        .controller('LoginCtrl', function($scope, $timeout, $stateParams, ionicMaterialInk) {
+        .controller('IntroCtrl', function($scope, $state, $ionicSlideBoxDelegate, ionicMaterialInk) {
+
+            // Called to navigate to the main app
+            $scope.startApp = function() {
+                $state.go('app.promos');
+            };
+            $scope.next = function() {
+                $ionicSlideBoxDelegate.next();
+            };
+            $scope.previous = function() {
+                $ionicSlideBoxDelegate.previous();
+            };
+
+            // Called each time the slide changes
+            $scope.slideChanged = function(index) {
+                $scope.slideIndex = index;
+            };
+            $scope.$parent.clearFabs();
+            $scope.$parent.showNavBar();
+//            $timeout(function() {
+            $scope.$parent.hideHeader();
+            $scope.$parent.showNavBar();
+//            }, 0);
+            ionicMaterialInk.displayEffect();
+
+        })
+
+        .controller('LoginCtrl', function($scope, $timeout, $stateParams, ionicMaterialInk, auth) {
+//            alert("controller");
+            $scope.login = function()
+            {
+              auth.login($scope.username, $scope.password);
+
+            }
+//              alert($scope.username);
+
             $scope.$parent.clearFabs();
             $timeout(function() {
                 $scope.$parent.hideHeader();
             }, 0);
             ionicMaterialInk.displayEffect();
+
+
         })
 
-        .controller('PromosCtrl', function($scope, Negocios, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion) {
- $scope.tituloApartado = "Promos cerca";
+        .controller('PromosCtrl', function($scope, auth, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion) {
+            $scope.tituloApartado = "Promos cerca";
             var datos = new Array();
             var datosMostrar = new Array();
             $timeout(traigoPromosRadar, 1500);
@@ -107,7 +144,7 @@ angular.module('starter.controllers', [])
 
                 var textoRespuesta;
 
-                datos = Negocios.radar(-31.788950, -60.447605, 500);
+                datos = auth.radar(-31.788950, -60.447605, 500);
                 textoRespuesta = datos[0];
 
                 var k = 0;
@@ -152,9 +189,9 @@ angular.module('starter.controllers', [])
         })
 
 
- .controller('PromosTodasCtrl', function($scope, Negocios, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion) {
+        .controller('PromosTodasCtrl', function($scope, auth, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion) {
 
- $scope.tituloApartado = "Todas las Promos";
+            $scope.tituloApartado = "Todas las Promos";
             var datos = new Array();
             var datosMostrar = new Array();
             $timeout(traigoPromosTodas, 1500);
@@ -165,7 +202,7 @@ angular.module('starter.controllers', [])
 
                 var textoRespuesta;
 
-                datos = Negocios.traerTodo(-31.788950, -60.447605, 10000);
+                datos = auth.traerTodo(-31.788950, -60.447605, 10000);
                 textoRespuesta = datos[0];
 
                 var k = 0;
@@ -208,9 +245,9 @@ angular.module('starter.controllers', [])
             };
 
         })
-        
-        .controller('PromoDetailCtrl', function($scope, $stateParams, Negocios) {
-            $scope.promo = Negocios.get($stateParams.promoId);
+
+        .controller('PromoDetailCtrl', function($scope, $stateParams, auth) {
+            $scope.promo = auth.get($stateParams.promoId);
         })
 
 
