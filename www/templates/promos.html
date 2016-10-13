@@ -1,0 +1,24 @@
+<ion-view view-title="{{tituloApartado}}">
+    <ion-content ng-class="{expanded:isExpanded}">
+         <ion-refresher on-refresh="doRefresh()">
+
+        </ion-refresher>
+        <p class="spinnerRadar" ng-hide="mostrar">
+        <ion-spinner icon="ripple" class=" spinner-dark"></ion-spinner>
+        </p>
+          <h2> {{textoRespuesta}} </h2>
+        <div class="content has-header">
+            <div class="list animate-fade-slide-in-right">
+                <a  class="item item-avatar item-icon-right" ng-repeat="negocio in negocios" href="#/app/todas/{{negocio.PromoId}}">
+                    <img ng-src="img/{{negocio.negocioLogo}}">
+                <h3>{{negocio.negocioNombre}}</h3>
+                <p>{{negocio.PromoTitulo}}</p>
+                <i class="icon ion-chevron-right icon-accessory"></i>
+                </a>              
+            </div>
+        </div>
+          
+         
+    </ion-content>
+     <a id="fab-profile" href="#/app/promos-todas" class="button button-fab button-fab-bottom-right button-energized-900"><i class="icon ion-aperture"></i></a>
+</ion-view>
