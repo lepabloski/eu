@@ -1,22 +1,25 @@
-  <ion-view view-title="Intro">
+  <ion-view view-title="Información Util">
         <ion-nav-buttons side="left">
           <button class="button button-positive button-clear no-animation"
                   ng-click="startApp()" ng-show="!slideIndex">
-            Skip Intro
+            
+               <i class="icon ion-close-round"></i>
           </button>
           <button class="button button-positive button-clear no-animation"
                   ng-click="previous()" ng-show="slideIndex > 0">
-            <
+                  <i class="icon ion-chevron-left"></i>
+          
           </button>
         </ion-nav-buttons>
         <ion-nav-buttons side="right"> 
           <button class="button button-positive button-clear no-animation"
                   ng-click="next()" ng-show="slideIndex != 2">
-           >
+            <i class="icon ion-chevron-right"></i>
           </button>
           <button class="button button-positive button-clear no-animation"
                   ng-click="startApp()" ng-show="slideIndex == 2">
-            Start using MyApp
+               <i class="icon ion-android-checkmark-circle"></i>
+           
           </button>
         </ion-nav-buttons>
         <ion-slide-box on-slide-changed="slideChanged(index)">
